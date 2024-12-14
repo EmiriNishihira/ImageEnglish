@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 import ImagePlayground
+import AVFoundation
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
@@ -19,6 +20,7 @@ struct ContentView: View {
     @State var uiImage: UIImage? = nil
     @State private var isShowAlert = false
     @State private var isFlipped = false
+    @State private var isSplidView = false
     
     init() {
       UITextField.appearance().clearButtonMode = .whileEditing
@@ -32,16 +34,73 @@ struct ContentView: View {
                         .degrees(isFlipped ? 180 : 0),
                         axis: (x: 0, y: 1, z: 0)
                     )
-                    
+                
                 VStack {
+                    // 画像一覧
                     if isFlipped {
                         VStack {
-                            Text("CollectionViewで画像表示する")
-                                .font(.title)
-                                .foregroundColor(.green)
-                                .padding()
+                            ScrollView {
+                                if isSplidView {
+                                    // ２分割
+                                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))], spacing: 20) {
+                                        ForEach(items) { item in
+                                            NavigationLink(destination: ItemDetailView(item: item)) {
+                                                if let url = item.imageUrl, let uiImage = UIImage(contentsOfFile: url.path) {
+                                                    Image(uiImage: uiImage)
+                                                        .resizable()
+                                                        .scaledToFill()
+                                                        .frame(width: 150, height: 150)
+                                                        .cornerRadius(10)
+                                                        .clipped()
+                                                } else {
+                                                    Image(systemName: "photo")
+                                                        .resizable()
+                                                        .scaledToFit()
+                                                        .frame(width: 150, height: 150)
+                                                        .foregroundColor(.gray)
+                                                }
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    // １分割
+                                    VStack(spacing: 20) {
+                                            ForEach(items) { item in
+                                                NavigationLink(destination: ItemDetailView(item: item)) {
+                                                    if let url = item.imageUrl, let uiImage = UIImage(contentsOfFile: url.path) {
+                                                        Image(uiImage: uiImage)
+                                                            .resizable()
+                                                            .scaledToFill()
+                                                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                                            .cornerRadius(10)
+                                                            .clipped()
+                                                    } else {
+                                                        Image(systemName: "photo")
+                                                            .resizable()
+                                                            .scaledToFit()
+                                                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                                            .foregroundColor(.gray)
+                                                    }
+                                                }
+                                            }
+                                        }
+                                }
+                                
+                            }
+                            .padding()
                         }
                         .toolbar {
+                            ToolbarItem {
+                                Button {
+                                    withAnimation {
+                                        isSplidView.toggle()
+                                    }
+                                } label: {
+                                    Image(systemName: isSplidView ? "square.split.1x2": "square.split.2x2")
+                                        .foregroundStyle(.white)
+                                }
+                            }
+                            
                             ToolbarItem {
                                 Button {
                                     withAnimation {
@@ -57,8 +116,10 @@ struct ContentView: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .background(Color.black)
                     } else {
+                        
+                        // 文字一覧
                         VStack {
-                            TextField("Enter Keywords", text: $newText)
+                            TextField("Enter keywords and press the rainbow button!", text: $newText)
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .padding()
                                 .background(Color(.secondarySystemBackground))
@@ -111,10 +172,6 @@ struct ContentView: View {
                             .scrollContentBackground(.hidden)
                             .background(Color.black)
                             .toolbar {
-                                ToolbarItem(placement: .navigationBarTrailing) {
-                                    EditButton()
-                                        .foregroundStyle(.white)
-                                }
                                 
                                 ToolbarItem {
                                     Button {
@@ -129,6 +186,11 @@ struct ContentView: View {
                                             createdImageURL = url
                                             addItem()
                                         }
+                                }
+                                
+                                ToolbarItem {
+                                    EditButton()
+                                        .foregroundStyle(.white)
                                 }
                                 
                                 ToolbarItem {
@@ -175,6 +237,56 @@ struct ContentView: View {
         let imageSaver = ImageSaver()
         imageSaver.writeToPhotoAlbum(image: uiImage)
         isShowAlert = true
+    }
+}
+
+struct ItemDetailView: View {
+    let item: Item
+    @State private var speechSynthesizer = AVSpeechSynthesizer()
+    
+    var body: some View {
+        VStack {
+            HStack {
+                Button {
+                    speakText()
+                } label: {
+                    Image(systemName: "play.circle")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 30, height: 30)
+                }
+                Text(item.text)
+                    .font(.title)
+            }
+            .padding()
+            .background(Color(.secondarySystemBackground))
+            .cornerRadius(8)
+            .padding()
+            
+            if let url = item.imageUrl, let uiImage = UIImage(contentsOfFile: url.path) {
+                Image(uiImage: uiImage)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .padding()
+            } else {
+                Image(systemName: "photo")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 300, height: 300)
+                    .foregroundColor(.gray)
+            }
+        }
+        .navigationTitle("Item Details")
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.black)
+    }
+    
+    func speakText() {
+        let utterance = AVSpeechUtterance(string: item.text)
+        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        utterance.rate = 0.5
+        speechSynthesizer.speak(utterance)
     }
 }
 
