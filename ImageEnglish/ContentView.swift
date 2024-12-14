@@ -29,14 +29,13 @@ struct ContentView: View {
             List {
                 ForEach(items) { item in
                     NavigationLink {
-                        // 画像の表示
                         if let url = item.imageUrl, let uiImage = UIImage(contentsOfFile: url.path) {
                             Image(uiImage: uiImage)
                                 .resizable()
                                 .scaledToFit()
                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                         } else {
-                            Image(systemName: "photo") // 画像がない場合のプレースホルダー
+                            Image(systemName: "photo")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 300, height: 300)
@@ -51,12 +50,6 @@ struct ContentView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
-                }
-                
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
                 }
                 
                 ToolbarItem {
@@ -82,6 +75,7 @@ struct ContentView: View {
         withAnimation {
             let newItem = Item(text: newText, imageUrl: createdImageURL)
             modelContext.insert(newItem)
+            try? modelContext.save()
         }
     }
 
@@ -90,6 +84,7 @@ struct ContentView: View {
             for index in offsets {
                 modelContext.delete(items[index])
             }
+            try? modelContext.save()
         }
     }
 }
