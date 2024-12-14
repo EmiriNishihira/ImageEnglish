@@ -10,9 +10,11 @@ import SwiftData
 
 @Model
 final class Item {
-    var timestamp: Date
+    var text: String
+    var imageUrl: URL?
     
-    init(timestamp: Date) {
-        self.timestamp = timestamp
+    init(text: String, imageUrl: URL? = nil) {
+        self.text = text
+        self.imageUrl = imageUrl
     }
 }

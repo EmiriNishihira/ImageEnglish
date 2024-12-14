@@ -7,36 +7,70 @@
 
 import SwiftUI
 import SwiftData
+import ImagePlayground
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
+    @State var newText: String = ""
+    @State private var showSheet = false
+    @State private var createdImageURL: URL? = nil
+    @Environment(\.supportsImagePlayground) private var supportsImagePlayground
 
     var body: some View {
         NavigationSplitView {
+            TextField("enterItem", text: $newText)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+                .background(Color(.secondarySystemBackground))
+                .cornerRadius(8)
+                .padding()
+            
             List {
                 ForEach(items) { item in
                     NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
+                        // 画像の表示
+                        if let url = item.imageUrl, let uiImage = UIImage(contentsOfFile: url.path) {
+                            Image(uiImage: uiImage)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        } else {
+                            Image(systemName: "photo") // 画像がない場合のプレースホルダー
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 300, height: 300)
+                                .foregroundColor(.gray)
+                        }
                     } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+                        Text("\(item.text)")
                     }
                 }
                 .onDelete(perform: deleteItems)
             }
-#if os(macOS)
-            .navigationSplitViewColumnWidth(min: 180, ideal: 200)
-#endif
             .toolbar {
-#if os(iOS)
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
                 }
-#endif
+                
                 ToolbarItem {
                     Button(action: addItem) {
                         Label("Add Item", systemImage: "plus")
                     }
+                }
+                
+                ToolbarItem {
+                    Button {
+                        showSheet = true
+                    } label: {
+                        Label("Sheet Image", systemImage: "apple.image.playground")
+                    }
+                    .imagePlaygroundSheet(
+                        isPresented: $showSheet,
+                        concept: newText) { url in
+                            createdImageURL = url
+                            addItem()
+                        }
                 }
             }
         } detail: {
@@ -46,7 +80,7 @@ struct ContentView: View {
 
     private func addItem() {
         withAnimation {
-            let newItem = Item(timestamp: Date())
+            let newItem = Item(text: newText, imageUrl: createdImageURL)
             modelContext.insert(newItem)
         }
     }
