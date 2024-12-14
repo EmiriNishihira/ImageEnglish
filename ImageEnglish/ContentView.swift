@@ -166,8 +166,6 @@ struct ContentView: View {
                                 }
                                 .onDelete(perform: deleteItems)
                             }
-                            .scrollContentBackground(.hidden)
-                            .background(Color.black)
                             .toolbar {
                                 
                                 ToolbarItem {
@@ -187,7 +185,7 @@ struct ContentView: View {
                                 
                                 ToolbarItem {
                                     EditButton()
-                                        .foregroundStyle(.white)
+                                        .foregroundStyle(UIDevice.current.userInterfaceIdiom == .pad ? Color.black : Color.white)
                                 }
                                 
                                 ToolbarItem {
@@ -200,10 +198,11 @@ struct ContentView: View {
                                             .foregroundStyle(.orange)
                                     }
                                 }
-                                
                             }
+                            .scrollContentBackground(.hidden)
+                            .background(UIDevice.current.userInterfaceIdiom == .pad ? Color(.secondarySystemBackground) : Color.black)
                         }
-                        .background(.black)
+                        .background(UIDevice.current.userInterfaceIdiom == .pad ? Color(.secondarySystemBackground) : Color.black)
                     }
                 }
             }

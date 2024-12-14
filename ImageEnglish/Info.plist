@@ -2,11 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>AppIcon</key>
+		<string></string>
+	</dict>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
 	</array>
-    <key>NSPhotoLibraryAddUsageDescription</key>
-    <string>The application accesses the photo library to store images.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>The application accesses the photo library to store images.</string>
 </dict>
 </plist>
