@@ -119,7 +119,7 @@ struct ContentView: View {
                         
                         // 文字一覧
                         VStack {
-                            TextField("Enter keywords and press the rainbow button!", text: $newText)
+                            TextField("Enter Keywords, Press Button", text: $newText)
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .padding()
                                 .background(Color(.secondarySystemBackground))
@@ -131,10 +131,7 @@ struct ContentView: View {
                                     NavigationLink {
                                         VStack {
                                             if let url = item.imageUrl, let uiImage = UIImage(contentsOfFile: url.path) {
-                                                Image(uiImage: uiImage)
-                                                    .resizable()
-                                                    .scaledToFit()
-                                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                                ItemDetailView(item: item)
                                                     .onAppear {
                                                         self.uiImage = uiImage
                                                     }
