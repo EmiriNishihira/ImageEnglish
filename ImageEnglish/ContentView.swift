@@ -15,7 +15,6 @@ struct ContentView: View {
     @Query private var items: [Item]
     @State var newText: String = ""
     @State private var showSheet = false
-    @State private var createdImageURL: URL? = nil
     @Environment(\.supportsImagePlayground) private var supportsImagePlayground
     @State var uiImage: UIImage? = nil
     @State private var isShowAlert = false
@@ -45,7 +44,7 @@ struct ContentView: View {
                                     LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))], spacing: 20) {
                                         ForEach(items) { item in
                                             NavigationLink(destination: ItemDetailView(item: item)) {
-                                                if let url = item.imageUrl, let uiImage = UIImage(contentsOfFile: url.path) {
+                                                if let imageData = item.imageData, let uiImage = UIImage(data: imageData) {
                                                     Image(uiImage: uiImage)
                                                         .resizable()
                                                         .scaledToFill()
@@ -67,7 +66,7 @@ struct ContentView: View {
                                     VStack(spacing: 20) {
                                             ForEach(items) { item in
                                                 NavigationLink(destination: ItemDetailView(item: item)) {
-                                                    if let url = item.imageUrl, let uiImage = UIImage(contentsOfFile: url.path) {
+                                                    if let imageData = item.imageData, let uiImage = UIImage(data: imageData) {
                                                         Image(uiImage: uiImage)
                                                             .resizable()
                                                             .scaledToFill()
@@ -100,7 +99,7 @@ struct ContentView: View {
                                         .foregroundStyle(.white)
                                 }
                             }
-                            
+
                             ToolbarItem {
                                 Button {
                                     withAnimation {
@@ -111,6 +110,7 @@ struct ContentView: View {
                                         .foregroundStyle(.orange)
                                 }
                             }
+
                         }
                         
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -130,7 +130,7 @@ struct ContentView: View {
                                 ForEach(items) { item in
                                     NavigationLink {
                                         VStack {
-                                            if let url = item.imageUrl, let uiImage = UIImage(contentsOfFile: url.path) {
+                                            if let imageData = item.imageData, let uiImage = UIImage(data: imageData) {
                                                 ItemDetailView(item: item)
                                                     .onAppear {
                                                         self.uiImage = uiImage
@@ -178,8 +178,7 @@ struct ContentView: View {
                                     .imagePlaygroundSheet(
                                         isPresented: $showSheet,
                                         concept: newText) { url in
-                                            createdImageURL = url
-                                            addItem()
+                                            addItem(url: url)
                                         }
                                 }
                                 
@@ -211,11 +210,19 @@ struct ContentView: View {
         }
     }
 
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(text: newText, imageUrl: createdImageURL)
-            modelContext.insert(newItem)
-            try? modelContext.save()
+    private func addItem(url: URL) {
+        do {
+            // URL から Data を生成
+            let imageData = try Data(contentsOf: url)
+            
+            withAnimation {
+                let newItem = Item(text: newText, imageData: imageData)
+                modelContext.insert(newItem)
+                try? modelContext.save()
+            }
+        } catch {
+            // エラー発生時のハンドリング
+            print("画像データの取得に失敗しました: \(error)")
         }
     }
 
@@ -259,7 +266,7 @@ struct ItemDetailView: View {
             .cornerRadius(8)
             .padding()
             
-            if let url = item.imageUrl, let uiImage = UIImage(contentsOfFile: url.path) {
+            if let imageData = item.imageData, let uiImage = UIImage(data: imageData) {
                 Image(uiImage: uiImage)
                     .resizable()
                     .scaledToFit()

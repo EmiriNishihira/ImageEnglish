@@ -11,10 +11,10 @@ import SwiftData
 @Model
 final class Item {
     var text: String
-    var imageUrl: URL?
+    var imageData: Data?
     
-    init(text: String, imageUrl: URL? = nil) {
+    init(text: String, imageData: Data?) {
         self.text = text
-        self.imageUrl = imageUrl
+        self.imageData = imageData
     }
 }
