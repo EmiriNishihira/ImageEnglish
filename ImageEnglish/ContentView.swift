@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 import ImagePlayground
 import AVFoundation
+import Translation
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
@@ -227,6 +228,7 @@ struct ItemDetailView: View {
     let item: Item
     @State private var speechSynthesizer = AVSpeechSynthesizer()
     @State private var isShowAlert = false
+    @State private var showsTranslate = false
     
     var body: some View {
         VStack {
@@ -234,13 +236,24 @@ struct ItemDetailView: View {
                 Button {
                     speakText()
                 } label: {
-                    Image(systemName: "play.circle")
+                    Image(systemName: "speaker.wave.2.circle")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 30, height: 30)
                 }
-                Text(item.text)
+                
+                Text(LocalizedStringKey(item.text))
                     .font(.title)
+                
+                Button {
+                    showsTranslate = true
+                } label: {
+                    Image(systemName: "translate")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 30, height: 30)
+                }
+                .translationPresentation(isPresented: $showsTranslate, text: item.text)
             }
             .padding()
             .background(Color(.secondarySystemBackground))
