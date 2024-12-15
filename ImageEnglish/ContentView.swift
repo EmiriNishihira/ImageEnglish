@@ -118,7 +118,7 @@ struct ContentView: View {
                         
                         // 文字一覧
                         VStack {
-                            TextField("Enter Keywords, Press Button", text: $newText)
+                            TextField(LocalizedStringKey("Enter Keywords, Press Button"), text: $newText)
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .padding()
                                 .background(Color(.secondarySystemBackground))
@@ -192,7 +192,7 @@ struct ContentView: View {
                 }
             }
         } detail: {
-            Text("Select an item")
+            Text(LocalizedStringKey("Select an item"))
         }
     }
 
@@ -270,7 +270,7 @@ struct ItemDetailView: View {
                         .foregroundColor(.white)
                 }
                 .alert(isPresented: $isShowAlert) {
-                    Alert(title: Text("Image saved successfully!"))
+                    Alert(title: Text(LocalizedStringKey("Image saved successfully!")))
                 }
             }
         }

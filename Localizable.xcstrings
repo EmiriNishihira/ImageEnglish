@@ -1,0 +1,39 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "%@" : {
+
+    },
+    "Enter Keywords, Press Button" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "キーワードを入力し、ボタンを押します"
+          }
+        }
+      }
+    },
+    "Image saved successfully!" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "画像の保存に成功しました！"
+          }
+        }
+      }
+    },
+    "Select an item" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "項目を選択しましょう"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

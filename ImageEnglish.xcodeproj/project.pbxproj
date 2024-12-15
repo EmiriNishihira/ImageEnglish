@@ -6,7 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		AD7C1BEA2D0F04C9004F7BC7 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = AD7C1BE92D0F04C9004F7BC7 /* Localizable.xcstrings */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
+		AD7C1BE92D0F04C9004F7BC7 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		AD8A02EF2D0D3D0E0029F021 /* ImageEnglish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageEnglish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -45,6 +50,7 @@
 		AD8A02E62D0D3D0E0029F021 = {
 			isa = PBXGroup;
 			children = (
+				AD7C1BE92D0F04C9004F7BC7 /* Localizable.xcstrings */,
 				AD8A02F12D0D3D0E0029F021 /* ImageEnglish */,
 				AD8A02F02D0D3D0E0029F021 /* Products */,
 			);
@@ -104,6 +110,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ja,
 			);
 			mainGroup = AD8A02E62D0D3D0E0029F021;
 			minimizedProjectReferenceProxies = 1;
@@ -122,6 +129,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD7C1BEA2D0F04C9004F7BC7 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +289,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -335,6 +344,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = Release;
 		};
