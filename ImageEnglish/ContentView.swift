@@ -17,7 +17,6 @@ struct ContentView: View {
     @State private var showSheet = false
     @Environment(\.supportsImagePlayground) private var supportsImagePlayground
     @State var uiImage: UIImage? = nil
-    @State private var isShowAlert = false
     @State private var isFlipped = false
     @State private var isSplidView = false
     
@@ -145,19 +144,6 @@ struct ContentView: View {
                                         }
                                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                                         .background(Color.black)
-                                        .toolbar {
-                                            ToolbarItem {
-                                                Button {
-                                                    saveImageToPhotos()
-                                                } label: {
-                                                    Image(systemName: "square.and.arrow.down")
-                                                        .foregroundColor(.white)
-                                                }
-                                                .alert(isPresented: $isShowAlert) {
-                                                    Alert(title: Text("Image saved successfully!"))
-                                                }
-                                            }
-                                        }
                                         
                                     } label: {
                                         Text("\(item.text)")
@@ -235,17 +221,12 @@ struct ContentView: View {
         }
     }
     
-    private func saveImageToPhotos() {
-        guard let uiImage = uiImage else { return }
-        let imageSaver = ImageSaver()
-        imageSaver.writeToPhotoAlbum(image: uiImage)
-        isShowAlert = true
-    }
 }
 
 struct ItemDetailView: View {
     let item: Item
     @State private var speechSynthesizer = AVSpeechSynthesizer()
+    @State private var isShowAlert = false
     
     var body: some View {
         VStack {
@@ -280,9 +261,30 @@ struct ItemDetailView: View {
                     .foregroundColor(.gray)
             }
         }
-        .navigationTitle("Item Details")
+        .toolbar {
+            ToolbarItem {
+                Button {
+                    saveImageToPhotos()
+                } label: {
+                    Image(systemName: "square.and.arrow.down")
+                        .foregroundColor(.white)
+                }
+                .alert(isPresented: $isShowAlert) {
+                    Alert(title: Text("Image saved successfully!"))
+                }
+            }
+        }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.black)
+    }
+    
+    private func saveImageToPhotos() {
+        guard let imageData = item.imageData, let uiImage = UIImage(data: imageData) else {
+            return
+        }
+        let imageSaver = ImageSaver()
+        imageSaver.writeToPhotoAlbum(image: uiImage)
+        isShowAlert = true
     }
     
     func speakText() {
