@@ -12,26 +12,26 @@
 
 /* Begin PBXFileReference section */
 		AD7C1BE92D0F04C9004F7BC7 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
-		AD8A02EF2D0D3D0E0029F021 /* ImageEnglish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageEnglish.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD8A02EF2D0D3D0E0029F021 /* AIWordImage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AIWordImage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		AD8A02FF2D0D3D0F0029F021 /* Exceptions for "ImageEnglish" folder in "ImageEnglish" target */ = {
+		AD219DF32D103028001BE161 /* Exceptions for "AIWordImage" folder in "AIWordImage" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = AD8A02EE2D0D3D0E0029F021 /* ImageEnglish */;
+			target = AD8A02EE2D0D3D0E0029F021 /* AIWordImage */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		AD8A02F12D0D3D0E0029F021 /* ImageEnglish */ = {
+		AD8A02F12D0D3D0E0029F021 /* AIWordImage */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				AD8A02FF2D0D3D0F0029F021 /* Exceptions for "ImageEnglish" folder in "ImageEnglish" target */,
+				AD219DF32D103028001BE161 /* Exceptions for "AIWordImage" folder in "AIWordImage" target */,
 			);
-			path = ImageEnglish;
+			path = AIWordImage;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -51,7 +51,7 @@
 			isa = PBXGroup;
 			children = (
 				AD7C1BE92D0F04C9004F7BC7 /* Localizable.xcstrings */,
-				AD8A02F12D0D3D0E0029F021 /* ImageEnglish */,
+				AD8A02F12D0D3D0E0029F021 /* AIWordImage */,
 				AD8A02F02D0D3D0E0029F021 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -59,7 +59,7 @@
 		AD8A02F02D0D3D0E0029F021 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AD8A02EF2D0D3D0E0029F021 /* ImageEnglish.app */,
+				AD8A02EF2D0D3D0E0029F021 /* AIWordImage.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -67,9 +67,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AD8A02EE2D0D3D0E0029F021 /* ImageEnglish */ = {
+		AD8A02EE2D0D3D0E0029F021 /* AIWordImage */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AD8A03002D0D3D0F0029F021 /* Build configuration list for PBXNativeTarget "ImageEnglish" */;
+			buildConfigurationList = AD8A03002D0D3D0F0029F021 /* Build configuration list for PBXNativeTarget "AIWordImage" */;
 			buildPhases = (
 				AD8A02EB2D0D3D0E0029F021 /* Sources */,
 				AD8A02EC2D0D3D0E0029F021 /* Frameworks */,
@@ -80,13 +80,13 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				AD8A02F12D0D3D0E0029F021 /* ImageEnglish */,
+				AD8A02F12D0D3D0E0029F021 /* AIWordImage */,
 			);
-			name = ImageEnglish;
+			name = AIWordImage;
 			packageProductDependencies = (
 			);
 			productName = ImageEnglish;
-			productReference = AD8A02EF2D0D3D0E0029F021 /* ImageEnglish.app */;
+			productReference = AD8A02EF2D0D3D0E0029F021 /* AIWordImage.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -104,7 +104,7 @@
 					};
 				};
 			};
-			buildConfigurationList = AD8A02EA2D0D3D0E0029F021 /* Build configuration list for PBXProject "ImageEnglish" */;
+			buildConfigurationList = AD8A02EA2D0D3D0E0029F021 /* Build configuration list for PBXProject "AIWordImage" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -119,7 +119,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AD8A02EE2D0D3D0E0029F021 /* ImageEnglish */,
+				AD8A02EE2D0D3D0E0029F021 /* AIWordImage */,
 			);
 		};
 /* End PBXProject section */
@@ -151,16 +151,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = ImageEnglish/ImageEnglish.entitlements;
+				CODE_SIGN_ENTITLEMENTS = AIWordImage/AIWordImage.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"ImageEnglish/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"AIWordImage/Preview Content\"";
 				DEVELOPMENT_TEAM = B9WD868NNN;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ImageEnglish/Info.plist;
+				INFOPLIST_FILE = AIWordImage/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -177,7 +177,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = emiri.ImageEnglish;
+				PRODUCT_BUNDLE_IDENTIFIER = emiri.AIWordImage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
@@ -194,16 +194,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = ImageEnglish/ImageEnglish.entitlements;
+				CODE_SIGN_ENTITLEMENTS = AIWordImage/AIWordImage.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"ImageEnglish/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"AIWordImage/Preview Content\"";
 				DEVELOPMENT_TEAM = B9WD868NNN;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ImageEnglish/Info.plist;
+				INFOPLIST_FILE = AIWordImage/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -220,7 +220,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = emiri.ImageEnglish;
+				PRODUCT_BUNDLE_IDENTIFIER = emiri.AIWordImage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
@@ -351,7 +351,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AD8A02EA2D0D3D0E0029F021 /* Build configuration list for PBXProject "ImageEnglish" */ = {
+		AD8A02EA2D0D3D0E0029F021 /* Build configuration list for PBXProject "AIWordImage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AD8A03032D0D3D0F0029F021 /* Debug */,
@@ -360,7 +360,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AD8A03002D0D3D0F0029F021 /* Build configuration list for PBXNativeTarget "ImageEnglish" */ = {
+		AD8A03002D0D3D0F0029F021 /* Build configuration list for PBXNativeTarget "AIWordImage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AD8A03012D0D3D0F0029F021 /* Debug */,
