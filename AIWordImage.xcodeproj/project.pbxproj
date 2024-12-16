@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD219DFD2D104651001BE161 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = AD219DFC2D104651001BE161 /* GoogleMobileAds */; };
 		AD7C1BEA2D0F04C9004F7BC7 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = AD7C1BE92D0F04C9004F7BC7 /* Localizable.xcstrings */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD219DFD2D104651001BE161 /* GoogleMobileAds in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +86,7 @@
 			);
 			name = AIWordImage;
 			packageProductDependencies = (
+				AD219DFC2D104651001BE161 /* GoogleMobileAds */,
 			);
 			productName = ImageEnglish;
 			productReference = AD8A02EF2D0D3D0E0029F021 /* AIWordImage.app */;
@@ -114,6 +117,9 @@
 			);
 			mainGroup = AD8A02E62D0D3D0E0029F021;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				AD219DFB2D104651001BE161 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = AD8A02F02D0D3D0E0029F021 /* Products */;
 			projectDirPath = "";
@@ -370,6 +376,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AD219DFB2D104651001BE161 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.13.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AD219DFC2D104651001BE161 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AD219DFB2D104651001BE161 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = AD8A02E72D0D3D0E0029F021 /* Project object */;
 }
