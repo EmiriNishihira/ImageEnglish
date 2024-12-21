@@ -24,10 +24,14 @@ struct ItemDetailView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 30, height: 30)
+                        .foregroundColor(.purple)
                 }
+                .padding()
                 
                 Text(LocalizedStringKey(item.text))
-                    .font(.title)
+                    .font(.system(size: 30))
+                    .font(.headline)
+                    .padding()
                 
                 Button {
                     showsTranslate = true
@@ -35,9 +39,11 @@ struct ItemDetailView: View {
                     Image(systemName: "translate")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 30, height: 30)
+                        .frame(width: 40, height: 40)
+                        .foregroundColor(.purple)
                 }
                 .translationPresentation(isPresented: $showsTranslate, text: item.text)
+                .padding()
             }
             .padding()
             .background(Color(.secondarySystemBackground))

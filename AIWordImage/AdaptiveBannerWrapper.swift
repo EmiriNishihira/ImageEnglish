@@ -15,6 +15,6 @@ struct AdaptiveBannerWrapper : UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ uiViewController: AdaptiveBannerViewController, context: Context) {
-        uiViewController.view.backgroundColor = .black
+        uiViewController.view.backgroundColor = .clear
     }
 }

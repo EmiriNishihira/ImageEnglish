@@ -22,7 +22,7 @@ final class AdaptiveBannerViewController: UIViewController {
         self.bannerView = GADBannerView(adSize: adaptiveSize)
         addBannerViewToView(bannerView)
         
-        bannerView.adUnitID = "/21775744923/example/adaptive-banner"
+        bannerView.adUnitID = "ca-app-pub-3816819069151708/5405878147"
         bannerView.rootViewController = self
         bannerView.delegate = self
         bannerView.load(GADRequest())
@@ -47,7 +47,7 @@ final class AdaptiveBannerViewController: UIViewController {
                             multiplier: 1,
                             constant: 0)
         ])
-     }
+    }
 }
 
 extension AdaptiveBannerViewController: GADBannerViewDelegate {

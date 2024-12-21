@@ -28,9 +28,6 @@ struct ImageEnglishApp: App {
         WindowGroup {
             VStack {
                 ContentView()
-               
-                AdaptiveBannerWrapper()
-                    .frame(maxWidth: .infinity, maxHeight: 70)
             }
             .background(Color.clear)
             .edgesIgnoringSafeArea(.all)

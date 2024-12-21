@@ -76,7 +76,14 @@ struct ImageListView: View {
                     }
                 } label: {
                     Image(systemName: isSplidView ? "square.split.1x2": "square.split.2x2")
-                        .foregroundStyle(.white)
+                        .font(.title2)
+                        .foregroundStyle(
+                            LinearGradient(
+                                colors: [.white, .yellow],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
                 }
             }
 
@@ -86,8 +93,15 @@ struct ImageListView: View {
                         isFlipped.toggle()
                     }
                 } label: {
-                    Image(systemName: "arrow.trianglehead.2.clockwise.rotate.90")
-                        .foregroundStyle(.orange)
+                    Image(systemName: "arrow.triangle.2.circlepath")
+                        .font(.title2)
+                        .foregroundStyle(
+                            LinearGradient(
+                                colors: [.green, .yellow],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
                 }
             }
 

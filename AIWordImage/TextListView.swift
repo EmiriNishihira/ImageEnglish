@@ -19,12 +19,38 @@ struct TextListView: View {
     
     var body: some View {
         VStack {
-            TextField(LocalizedStringKey("Enter Keywords, Press Button"), text: $newText)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-                .background(Color(.secondarySystemBackground))
-                .cornerRadius(8)
-                .padding()
+            HStack {
+                TextField(LocalizedStringKey("Enter Keywords, Press Button"), text: $newText)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding(8)
+                    .background(Color.white)
+                    .cornerRadius(12)
+                    .shadow(radius: 5)
+                
+                Button {
+                    showSheet = true
+                } label: {
+                    Image(systemName: "apple.image.playground")
+                        .font(.title2)
+                        .foregroundStyle(.linearGradient(Gradient(colors: [.purple, .cyan, .orange]), startPoint: .top, endPoint: .bottom))
+                        .padding(10)
+                        .background(Color.white)
+                        .cornerRadius(12)
+                        .shadow(radius: 5)
+                }
+                .imagePlaygroundSheet(
+                    isPresented: $showSheet,
+                    concept: newText) { url in
+                        addItem(url: url)
+                    }
+            }
+            .padding()
+            .background(
+                Color(.systemBackground).opacity(0.8)
+            )
+            .frame(maxWidth: .infinity, maxHeight: 80)
+            .cornerRadius(12)
+            .shadow(radius: 10)
             
             List {
                 ForEach(items) { item in
@@ -45,33 +71,30 @@ struct TextListView: View {
                         }
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .background(Color.black)
-                        
+                        .cornerRadius(12)
+                        .shadow(radius: 10)
                     } label: {
                         Text("\(item.text)")
+                            .font(.headline)
+                            .foregroundStyle(.black)
+                            .padding()
+                            .background(Color.white)
+                            .cornerRadius(10)
+                            .shadow(radius: 5)
                     }
-                    
                 }
                 .onDelete(perform: deleteItems)
             }
             .toolbar {
-                
-                ToolbarItem {
-                    Button {
-                        showSheet = true
-                    } label: {
-                        Image(systemName: "apple.image.playground")
-                            .foregroundStyle(.linearGradient(Gradient(colors: [.purple, .cyan, .orange]), startPoint: .top, endPoint: .bottom))
-                    }
-                    .imagePlaygroundSheet(
-                        isPresented: $showSheet,
-                        concept: newText) { url in
-                            addItem(url: url)
-                        }
-                }
-                
                 ToolbarItem {
                     EditButton()
-                        .foregroundStyle(UIDevice.current.userInterfaceIdiom == .pad ? Color.black : Color.white)
+                        .foregroundStyle(
+                            LinearGradient(
+                                colors: [.white, .orange],
+                                startPoint: .top,
+                                endPoint: .bottom
+                            )
+                        )
                 }
                 
                 ToolbarItem {
@@ -80,30 +103,33 @@ struct TextListView: View {
                             isFlipped.toggle()
                         }
                     } label: {
-                        Image(systemName: "arrow.trianglehead.2.clockwise.rotate.90")
-                            .foregroundStyle(.orange)
+                        Image(systemName: "arrow.triangle.2.circlepath")
+                            .font(.title2)
+                            .foregroundStyle(
+                                LinearGradient(
+                                    colors: [.green, .yellow],
+                                    startPoint: .topLeading,
+                                    endPoint: .bottomTrailing
+                                )
+                            )
                     }
                 }
             }
             .scrollContentBackground(.hidden)
-            .background(UIDevice.current.userInterfaceIdiom == .pad ? Color(.secondarySystemBackground) : Color.black)
         }
-        .background(UIDevice.current.userInterfaceIdiom == .pad ? Color(.secondarySystemBackground) : Color.black)
+        .padding()
     }
     
     private func addItem(url: URL) {
         do {
-            // URL から Data を生成
             let imageData = try Data(contentsOf: url)
-            
             withAnimation {
                 let newItem = Item(text: newText, imageData: imageData)
                 modelContext.insert(newItem)
                 try? modelContext.save()
             }
         } catch {
-            // エラー発生時のハンドリング
-            print("画像データの取得に失敗しました: \(error)")
+            print("Failed to fetch image data: \(error)")
         }
     }
 
@@ -119,5 +145,5 @@ struct TextListView: View {
 
 #Preview {
     TextListView(isFlipped: .constant(false))
-        .modelContainer(for: Item.self, inMemory: true)
+        .modelContainer(previewContainer)
 }
