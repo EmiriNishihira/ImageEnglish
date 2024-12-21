@@ -67,24 +67,33 @@ struct TextListView: View {
                                     .scaledToFit()
                                     .frame(width: 300, height: 300)
                                     .foregroundColor(.gray)
+                                    .padding(20)
                             }
                         }
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .background(Color.black)
-                        .cornerRadius(12)
-                        .shadow(radius: 10)
+                        .background(
+                            LinearGradient(gradient: Gradient(colors: [.blue, .purple]), startPoint: .top, endPoint: .bottom)
+                        )
+                        .cornerRadius(15)
+                        .shadow(radius: 15)
                     } label: {
                         Text("\(item.text)")
-                            .font(.headline)
-                            .foregroundStyle(.black)
+                            .font(.title2)
+                            .fontWeight(.bold)
+                            .foregroundStyle(.primary)
                             .padding()
-                            .background(Color.white)
-                            .cornerRadius(10)
-                            .shadow(radius: 5)
+                            .background(
+                                LinearGradient(gradient: Gradient(colors: [.yellow, .orange]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                            )
+                            .cornerRadius(20)
+                            .shadow(radius: 10)
                     }
                 }
                 .onDelete(perform: deleteItems)
             }
+            .cornerRadius(10)
+            .scrollContentBackground(.hidden)
+
             .toolbar {
                 ToolbarItem {
                     EditButton()
@@ -115,7 +124,6 @@ struct TextListView: View {
                     }
                 }
             }
-            .scrollContentBackground(.hidden)
         }
         .padding()
     }
