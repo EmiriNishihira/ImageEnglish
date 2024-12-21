@@ -106,9 +106,9 @@ struct ImageListView: View {
             }
 
         }
-        
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.black)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        
     }
 }
 

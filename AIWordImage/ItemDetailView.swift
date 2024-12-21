@@ -29,9 +29,15 @@ struct ItemDetailView: View {
                 .padding()
                 
                 Text(LocalizedStringKey(item.text))
-                    .font(.system(size: 30))
-                    .font(.headline)
+                    .font(.title2)
+                    .fontWeight(.bold)
+                    .foregroundStyle(.primary)
                     .padding()
+                    .background(
+                        LinearGradient(gradient: Gradient(colors: [.yellow, .orange]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                    )
+                    .cornerRadius(20)
+                    .shadow(radius: 10)
                 
                 Button {
                     showsTranslate = true
@@ -39,6 +45,7 @@ struct ItemDetailView: View {
                     Image(systemName: "translate")
                         .resizable()
                         .scaledToFit()
+                        .cornerRadius(10)
                         .frame(width: 40, height: 40)
                         .foregroundColor(.purple)
                 }
@@ -54,14 +61,17 @@ struct ItemDetailView: View {
                 Image(uiImage: uiImage)
                     .resizable()
                     .scaledToFit()
+                    .cornerRadius(10)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .padding()
+                    .padding(.horizontal)
             } else {
                 Image(systemName: "photo")
                     .resizable()
                     .scaledToFit()
+                    .cornerRadius(10)
                     .frame(width: 300, height: 300)
                     .foregroundColor(.gray)
+                    .padding(.horizontal)
             }
         }
         .toolbar {
@@ -70,15 +80,22 @@ struct ItemDetailView: View {
                     saveImageToPhotos()
                 } label: {
                     Image(systemName: "square.and.arrow.down")
-                        .foregroundColor(.white)
+                        .font(.title2)
+                        .foregroundStyle(
+                            LinearGradient(
+                                colors: [.cyan, .purple],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
                 }
                 .alert(isPresented: $isShowAlert) {
                     Alert(title: Text(LocalizedStringKey("Image saved successfully!")))
                 }
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.black)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
     private func saveImageToPhotos() {

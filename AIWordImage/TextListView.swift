@@ -74,8 +74,6 @@ struct TextListView: View {
                         .background(
                             LinearGradient(gradient: Gradient(colors: [.blue, .purple]), startPoint: .top, endPoint: .bottom)
                         )
-                        .cornerRadius(15)
-                        .shadow(radius: 15)
                     } label: {
                         Text("\(item.text)")
                             .font(.title2)
@@ -91,7 +89,6 @@ struct TextListView: View {
                 }
                 .onDelete(perform: deleteItems)
             }
-            .cornerRadius(10)
             .scrollContentBackground(.hidden)
 
             .toolbar {
